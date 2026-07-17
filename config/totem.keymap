@@ -55,19 +55,19 @@
 
         combo_lctl {
             key-positions = <11 12>;
-            bindings = <&kp LCTRL>;
+            bindings = <&sk LCTRL>;
             timeout-ms = <40>;
         };
 
         combo_lsft {
             key-positions = <12 13>;
-            bindings = <&kp LSHFT>;
+            bindings = <&sk LSHFT>;
             timeout-ms = <40>;
         };
 
         combo_cs {
             key-positions = <11 12 13>;
-            bindings = <&kp LC(LSHFT)>;
+            bindings = <&sk LC(LSHFT)>;
             timeout-ms = <40>;
         };
 
@@ -75,13 +75,13 @@
 
         combo_rsft {
             key-positions = <16 17>;
-            bindings = <&kp RSHFT>;
+            bindings = <&sk RSHFT>;
             timeout-ms = <40>;
         };
 
         combo_rctl {
             key-positions = <17 18>;
-            bindings = <&kp RCTRL>;
+            bindings = <&sk RCTRL>;
             timeout-ms = <40>;
         };
     };
