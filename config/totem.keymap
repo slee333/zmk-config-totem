@@ -12,8 +12,8 @@
 //
 
 #include <behaviors.dtsi>
-#include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/outputs.h>
 #include <dt-bindings/zmk/pointing.h>
 
@@ -24,8 +24,10 @@
 
 / {
     // ADJ layer turns on automatically when NAV + FN are both held
+
     conditional_layers {
         compatible = "zmk,conditional-layers";
+
         adj {
             if-layers = <NAV FN>;
             then-layer = <ADJ>;
@@ -36,79 +38,118 @@
         compatible = "zmk,combos";
 
         // --- Esc / 한영 ---
-        combo_esc  { key-positions = <0 1>;   bindings = <&kp ESC>;    timeout-ms = <45>; };
-        combo_lang { key-positions = <18 19>; bindings = <&kp LANG1>;  timeout-ms = <45>; };
+
+        combo_esc {
+            key-positions = <0 1>;
+            bindings = <&kp ESC>;
+            timeout-ms = <45>;
+        };
+
+        combo_lang {
+            key-positions = <18 19>;
+            bindings = <&kp LANG1>;
+            timeout-ms = <45>;
+        };
 
         // --- Left-hand mods ---
-        combo_lctl { key-positions = <11 12>;    bindings = <&kp LCTRL>;      timeout-ms = <40>; };
-        combo_lsft { key-positions = <12 13>;    bindings = <&kp LSHFT>;      timeout-ms = <40>; };
-        combo_cs   { key-positions = <11 12 13>; bindings = <&kp LC(LSHFT)>;  timeout-ms = <40>; };
+
+        combo_lctl {
+            key-positions = <11 12>;
+            bindings = <&kp LCTRL>;
+            timeout-ms = <40>;
+        };
+
+        combo_lsft {
+            key-positions = <12 13>;
+            bindings = <&kp LSHFT>;
+            timeout-ms = <40>;
+        };
+
+        combo_cs {
+            key-positions = <11 12 13>;
+            bindings = <&kp LC(LSHFT)>;
+            timeout-ms = <40>;
+        };
 
         // --- Right-hand mods ---
-        combo_rsft { key-positions = <16 17>; bindings = <&kp RSHFT>;  timeout-ms = <40>; };
-        combo_rctl { key-positions = <17 18>; bindings = <&kp RCTRL>;  timeout-ms = <40>; };
+
+        combo_rsft {
+            key-positions = <16 17>;
+            bindings = <&kp RSHFT>;
+            timeout-ms = <40>;
+        };
+
+        combo_rctl {
+            key-positions = <17 18>;
+            bindings = <&kp RCTRL>;
+            timeout-ms = <40>;
+        };
     };
 
     keymap {
         compatible = "zmk,keymap";
 
-// ─────────────────────────────────────────────────────────────────────────────
-//  BASE  (QWERTY — mods are on combos)
-//   Q   W   E   R   T        Y   U   I   O   P
-//   A   S   D   F   G        H   J   K   L   ;
-// ⇧ Z   X   C   V   B        N   M   ,   .   /   '
-//        GUI ↧NAV SPC        BSPC RET ↧FN⁄한영
-// ─────────────────────────────────────────────────────────────────────────────
+        // ─────────────────────────────────────────────────────────────────────────────
+        //  BASE  (QWERTY — mods are on combos)
+        //   Q   W   E   R   T        Y   U   I   O   P
+        //   A   S   D   F   G        H   J   K   L   ;
+        // ⇧ Z   X   C   V   B        N   M   ,   .   /   '
+        //        GUI ↧NAV SPC        BSPC RET ↧FN⁄한영
+        // ─────────────────────────────────────────────────────────────────────────────
+
         base_layer {
             bindings = <
-                &kp Q       &kp W    &kp E    &kp R    &kp T        &kp Y        &kp U    &kp I     &kp O    &kp P
-                &kp A       &kp S    &kp D    &kp F    &kp G        &kp H        &kp J    &kp K     &kp L    &kp SEMI
-   &kp LSHFT    &kp Z       &kp X    &kp C    &kp V    &kp B        &kp N        &kp M    &kp COMMA &kp DOT  &kp FSLH  &kp SQT
-                                 &kp LGUI &mo NAV  &kp SPACE    &kp BSPC &kp RET  &lt FN LANG1
+           &kp Q  &kp W  &kp E     &kp R    &kp T        &kp Y     &kp U    &kp I         &kp O    &kp P
+           &kp A  &kp S  &kp D     &kp F    &kp G        &kp H     &kp J    &kp K         &kp L    &kp SEMI
+&kp LSHFT  &kp Z  &kp X  &kp C     &kp V    &kp B        &kp N     &kp M    &kp COMMA     &kp DOT  &kp FSLH  &kp SQT
+                         &kp LGUI  &mo NAV  &kp SPACE    &kp BSPC  &kp RET  &lt FN LANG1
             >;
         };
 
-// ─────────────────────────────────────────────────────────────────────────────
-//  NAV  (numbers · word-nav · arrows)
-//   1   2   3   4   5        6   7   8   9   0
-//  Home ⌃← ⌃→  End PgUp      ←   ↓   ↑   →   \
+        // ─────────────────────────────────────────────────────────────────────────────
+        //  NAV  (numbers · word-nav · arrows)
+        //   1   2   3   4   5        6   7   8   9   0
+        //  Home ⌃← ⌃→  End PgUp      ←   ↓   ↑   →   \
 // ⇧ ⌃Hm ⌃En ⌃PU ⌃PD PgDn    Del  [   ]   \   -   /
-//        GUI  __  SPC        BSPC RET __
-// ─────────────────────────────────────────────────────────────────────────────
+        //        GUI  __  SPC        BSPC RET __
+        // ─────────────────────────────────────────────────────────────────────────────
+
         nav_layer {
             bindings = <
-                &kp N1      &kp N2      &kp N3      &kp N4       &kp N5        &kp N6      &kp N7      &kp N8    &kp N9    &kp N0
-                &kp HOME    &kp LC(LEFT)&kp LC(RIGHT)&kp END      &kp PG_UP     &kp LEFT    &kp DOWN    &kp UP    &kp RIGHT &kp BSLH
-   &kp LSHFT    &kp LC(HOME)&kp LC(END) &kp LC(PG_UP)&kp LC(PG_DN)&kp PG_DN    &kp DEL     &kp LBKT    &kp RBKT  &kp BSLH  &kp MINUS &kp FSLH
-                                        &kp LGUI    &trans       &kp SPACE     &kp BSPC    &kp RET     &trans
+           &kp N1        &kp N2        &kp N3         &kp N4         &kp N5         &kp N6    &kp N7    &kp N8        &kp N9     &kp N0
+           &kp HOME      &kp LC(LEFT)  &kp LC(RIGHT)  &kp END        &kp LA(TAB)    &kp LEFT  &kp DOWN  &kp UP        &kp RIGHT  &kp MINUS
+&kp LSHFT  &kp LC(HOME)  &kp LC(END)   &kp LC(PG_UP)  &kp LC(PG_DN)  &kp LA(F4)     &kp DEL   &kp LBKT  &kp RBKT      &kp BSLH   &kp EQUAL  &kp FSLH
+                                       &kp LGUI       &trans         &kp SPACE      &kp BSPC  &kp RET   &kp LEFT_GUI
             >;
         };
 
-// ─────────────────────────────────────────────────────────────────────────────
-//  FN  (left = mouse, right = media / F-keys)   ← DRAFT, tweak freely
-//  MB4 M↑  MB5 W↑  x        🔆+ ⏮  🔇  ⏭   x
-//  M←  M↓  M→  W↓  x        🔆- 🔉  ⏯  🔊   x
-// x SW← M3 SW→ Snip F2      F8  F9  F10 F11 F12  x
-//        ↧ADJ RMB LMB       __ PrSc Stop
-// ─────────────────────────────────────────────────────────────────────────────
+        // ─────────────────────────────────────────────────────────────────────────────
+        //  FN  (left = mouse, right = media / F-keys)   ← DRAFT, tweak freely
+        //  MB4 M↑  MB5 W↑  x        🔆+ ⏮  🔇  ⏭   x
+        //  M←  M↓  M→  W↓  x        🔆- 🔉  ⏯  🔊   x
+        // x SW← M3 SW→ Snip F2      F8  F9  F10 F11 F12  x
+        //        ↧ADJ RMB LMB       __ PrSc Stop
+        // ─────────────────────────────────────────────────────────────────────────────
+
         fn_layer {
             bindings = <
-                &mkp MB4    &mmv MOVE_UP  &mkp MB5   &msc SCRL_UP  &none          &kp C_BRI_UP &kp C_PREV &kp C_MUTE &kp C_NEXT &none
-                &mmv MOVE_LEFT &mmv MOVE_DOWN &mmv MOVE_RIGHT &msc SCRL_DOWN &none  &kp C_BRI_DN &kp C_VOL_DN &kp C_PP &kp C_VOL_UP &none
-   &none        &msc SCRL_LEFT &mkp MCLK &msc SCRL_RIGHT &kp LG(LS(S)) &kp F2      &kp F8      &kp F9     &kp F10    &kp F11    &kp F12   &none
-                                        &mo ADJ     &mkp RCLK     &mkp LCLK       &trans      &kp PSCRN  &kp C_STOP
+               &kp F2   &mkp MB4        &mmv MOVE_UP    &mkp MB5         &msc SCRL_UP       &kp C_BRI_UP  &kp C_PREV    &kp C_MUTE  &kp C_NEXT    &none
+               &kp F5   &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &msc SCRL_DOWN     &kp C_BRI_DN  &kp C_VOL_DN  &kp C_PP    &kp C_VOL_UP  &none
+&kp LG(LS(S))  &kp F12  &msc SCRL_LEFT  &mkp MCLK       &msc SCRL_RIGHT  &kp LC(LA(DEL))    &kp F8        &kp F9        &kp F10     &kp F11       &none  &none
+                                        &mo ADJ         &mkp RCLK        &mkp LCLK          &trans        &kp PSCRN     &trans
             >;
         };
 
-// ─────────────────────────────────────────────────────────────────────────────
-//  ADJ  (auto: NAV+FN held)  — bluetooth · reset · bootloader
-// ─────────────────────────────────────────────────────────────────────────────
+        // ─────────────────────────────────────────────────────────────────────────────
+        //  ADJ  (auto: NAV+FN held)  — bluetooth · reset · bootloader
+        // ─────────────────────────────────────────────────────────────────────────────
+
         adj_layer {
             bindings = <
-                &bt BT_CLR  &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3   &none  &none  &none  &none  &none
-                &out OUT_TOG &none       &none        &none        &none          &none  &none  &none  &none  &none
-   &none        &bootloader &sys_reset  &none        &none        &none          &none  &none  &none  &none  &none  &none
-                                        &trans       &trans       &trans         &trans &trans &trans
+       &bt BT_CLR    &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3    &none   &none   &none   &none  &none
+       &out OUT_TOG  &none         &none         &none         &none           &none   &none   &none   &none  &none
+&none  &bootloader   &sys_reset    &none         &none         &none           &none   &none   &none   &none  &none  &none
+                                   &trans        &trans        &trans          &trans  &trans  &trans
             >;
         };
     };
