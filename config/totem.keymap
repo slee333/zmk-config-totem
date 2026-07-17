@@ -71,7 +71,7 @@
             timeout-ms = <40>;
         };
 
-        // --- Right-hand mods ---
+        // --- Right-hand mods --- comment to start building
 
         combo_rsft {
             key-positions = <16 17>;
