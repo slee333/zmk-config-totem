@@ -118,16 +118,16 @@
             bindings = <
            &kp N1        &kp N2        &kp N3         &kp N4         &kp N5         &kp N6    &kp N7    &kp N8        &kp N9     &kp N0
            &kp HOME      &kp LC(LEFT)  &kp LC(RIGHT)  &kp END        &kp LA(TAB)    &kp LEFT  &kp DOWN  &kp UP        &kp RIGHT  &kp MINUS
-&kp LSHFT  &kp LC(HOME)  &kp LC(END)   &kp LC(PG_UP)  &kp LC(PG_DN)  &kp LA(F4)     &kp DEL   &kp LBKT  &kp RBKT      &kp BSLH   &kp EQUAL  &kp FSLH
+&kp LSHFT  &kp LC(HOME)  &kp LC(END)   &kp LC(PG_UP)  &kp LC(PG_DN)  &kp LA(F4)     &kp DEL   &kp LBKT  &kp RBKT      &kp BSLH   &kp EQUAL  &kp GRAVE
                                        &kp LGUI       &trans         &kp SPACE      &kp BSPC  &kp RET   &kp LEFT_GUI
             >;
         };
 
         // ─────────────────────────────────────────────────────────────────────────────
-        //  FN  (left = mouse, right = media / F-keys)   ← DRAFT, tweak freely
+        //  FN  (left = mouse, right = media + BT profiles)
         //  MB4 M↑  MB5 W↑  x        🔆+ ⏮  🔇  ⏭   x
         //  M←  M↓  M→  W↓  x        🔆- 🔉  ⏯  🔊   x
-        // x SW← M3 SW→ Snip F2      F8  F9  F10 F11 F12  x
+        // x SW← M3 SW→ Snip F2      BT0 BT1 BT2 BT3 BTclr x
         //        ↧ADJ RMB LMB       __ PrSc Stop
         // ─────────────────────────────────────────────────────────────────────────────
 
@@ -135,7 +135,7 @@
             bindings = <
                &kp F2   &mkp MB4        &mmv MOVE_UP    &mkp MB5         &msc SCRL_UP       &kp C_BRI_UP  &kp C_PREV    &kp C_MUTE  &kp C_NEXT    &none
                &kp F5   &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &msc SCRL_DOWN     &kp C_BRI_DN  &kp C_VOL_DN  &kp C_PP    &kp C_VOL_UP  &none
-&kp LG(LS(S))  &kp F12  &msc SCRL_LEFT  &mkp MCLK       &msc SCRL_RIGHT  &kp LC(LA(DEL))    &kp F8        &kp F9        &kp F10     &kp F11       &none  &none
+&kp LG(LS(S))  &kp F12  &msc SCRL_LEFT  &mkp MCLK       &msc SCRL_RIGHT  &kp LC(LA(DEL))    &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_CLR  &none
                                         &mo ADJ         &mkp RCLK        &mkp LCLK          &trans        &kp PSCRN     &trans
             >;
         };
